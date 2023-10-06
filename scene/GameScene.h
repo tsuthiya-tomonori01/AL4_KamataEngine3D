@@ -9,6 +9,8 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "Player.h"
+#include <memory>
+#include "DebugCamera.h"
 
 /// <summary>
 /// ゲームシーン
@@ -30,9 +32,6 @@ public: // メンバ関数
 	/// 初期化
 	/// </summary>
 	void Initialize();
-
-	Player* player_ = nullptr;
-
 	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
@@ -52,8 +51,11 @@ private: // メンバ変数
 	/// ゲームシーン用
 	/// </summary>
 	
+	std::unique_ptr<Player> player_;
+
 	uint32_t textureHandle_ = 0;
-	Model* model_ = nullptr;
+	std::unique_ptr<Model> model_;
 
 	ViewProjection viewProjection_;
+
 };
